@@ -275,10 +275,13 @@ void oprint_temperatura_opcje(int limit)
 bool naprzemiennie = false;
 void oprint_alarm()
 {
-  u8g2.setFont(u8g2_font_open_iconic_embedded_2x_t);
   if (naprzemiennie)
   {
+    u8g2.setFont(u8g2_font_open_iconic_embedded_2x_t);
     u8g2.drawGlyph(0, 16, 0x0047);
+    u8g2.setFont(u8g2_font_helvR10_tr);
+    u8g2.setCursor(16, 14);
+    u8g2.print("ALARM");
   }
   naprzemiennie = !naprzemiennie;
 
@@ -296,11 +299,11 @@ void oprint_alarm()
       {
         if(adres_index < 2)
         {
-          u8g2.setCursor(45, (adres_index+1)*14);
+          u8g2.setCursor(70, (adres_index+1)*14);
         }
         else
         {
-          u8g2.setCursor(80, (adres_index-1)*14);
+          u8g2.setCursor(105, (adres_index-1)*14);
         }
         u8g2.print(temperatura[0][adres_index]);
       }
@@ -308,10 +311,15 @@ void oprint_alarm()
   }
   else if(obroty_alarm)
   {
-    u8g2.print("RPM alarm");
+    u8g2.print("RPM");
     
-    u8g2.setFont(u8g2_font_helvR18_tr);
-    u8g2.setCursor(75, 30);
+    u8g2.setFont(u8g2_font_helvR24_tr);
+    u8g2.setCursor(75, 32);
+    if (obroty_na_min > 999)
+    {
+      u8g2.setFont(u8g2_font_helvR18_tr);
+      u8g2.setCursor(75, 30);
+    }
     u8g2.print(obroty_na_min);
   }
 }
