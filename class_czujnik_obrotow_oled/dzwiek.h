@@ -72,7 +72,7 @@ void alarm()
       pauza = false;
     }
 
-    if (millis() - t_tymczasowe_wyciszenie_przyciskiem > 5000)
+    if (millis() - t_tymczasowe_wyciszenie_przyciskiem > EXT_ZRODLO_OPOZNIENIE)
     {
       if (sygnal)
       {

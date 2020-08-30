@@ -465,6 +465,8 @@ void oled_manager()
           if (enter_krotki)
           {
             ol_0 = 8;
+            ol_1 = 0;
+            ol_2 = 0;
             oled_odswiez = true;
           }
           break;
@@ -582,7 +584,9 @@ void oled_manager()
           u8g2.nextPage();
           if (enter_krotki)
           {
-            ol_0 = 0;
+            ol_0 = 7;
+            ol_1 = 3;
+            ol_2 = 0;
             oled_odswiez = true;
 
             // zapis do pamieci
@@ -649,12 +653,6 @@ void oled_manager()
           {
             ol_2 = ( ol_2 + 3 ) % 2;
             oled_odswiez = true;
-
-            if (ol_2 == 0)
-            {
-              // zapisanie do pamieci
-              zapisz_konfiguracje(class_ustawienia);
-            }
           }
           if (ol_2 && pokretlo_zmiana)
           {
@@ -670,10 +668,13 @@ void oled_manager()
           u8g2.nextPage();
           if (enter_krotki)
           {
-            ol_0 = 0;
-            ol_1 = 0;
+            ol_0 = 7;
+            ol_1 = 3;
             ol_2 = 0;
             oled_odswiez = true;
+
+            // zapisanie do pamieci
+            zapisz_konfiguracje(class_ustawienia);
           }
           break;
         }
@@ -736,12 +737,6 @@ void oled_manager()
           {
             ol_2 = ( ol_2 + 3 ) % 2;
             oled_odswiez = true;
-
-            if (ol_2 == 0)
-            {
-              // zapisanie do pamieci
-              zapisz_konfiguracje(class_ustawienia);
-            }
           }
           if (ol_2 && pokretlo_zmiana)
           {
@@ -757,10 +752,13 @@ void oled_manager()
           u8g2.nextPage();
           if (enter_krotki)
           {
-            ol_0 = 0;
-            ol_1 = 0;
+            ol_0 = 7;
+            ol_1 = 3;
             ol_2 = 0;
             oled_odswiez = true;
+
+            // zapisanie do pamieci
+            zapisz_konfiguracje(class_ustawienia);
           }
           break;
         }
@@ -798,6 +796,9 @@ void oled_manager()
 
   if(ol_0 != 100 && wyswietl_alarm)
   {
+    /*
+     * Wlaczenie komunikatu alarmowego
+     */
     if (ol_0 != 100)
     {
       ol_3 = ol_0;
@@ -809,12 +810,18 @@ void oled_manager()
   }
   else if(ol_0 == 100 && (obroty_zmiana || temperatura_zmiana))
   {
+    /*
+     * Aktualizacja komunikatu alarmowego
+     */
     u8g2.firstPage();
     oprint_alarm();
     u8g2.nextPage();
   }
   else if (ol_0 == 100 && !wyswietl_alarm)
   {
+    /*
+     * Wylaczenie komunikatu alarmowego
+     */
     ol_0 = ol_3; 
     oled_odswiez = true;
   }

@@ -36,6 +36,7 @@ bool pokretlo_zmiana = false;
 bool enter_krotki = false;
 bool enter_dlugi = false;
 
+const int EXT_ZRODLO_OPOZNIENIE = 8000;
 const uint8_t CZUJNIK_POMIAR_OPOZNIENIE = 10;
 const unsigned long MINUTE = 60000;
 
