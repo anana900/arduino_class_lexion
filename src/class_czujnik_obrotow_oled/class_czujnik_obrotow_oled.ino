@@ -18,6 +18,8 @@ U8G2_SSD1306_128X32_UNIVISION_F_HW_I2C u8g2(U8G2_R0, /* reset=*/ U8X8_PIN_NONE, 
 #include "obsluga_eeprom.h"
 #include "oled.h"
 
+#define DEBUG 0
+
 OneWire oneWire(ONE_WIRE_CZUJNIK_TEMPERATURA);
 DallasTemperature czujnik_temperatury(&oneWire);
 
@@ -25,8 +27,9 @@ DallasTemperature czujnik_temperatury(&oneWire);
 
 void setup(void)
 {
+#ifdef DEBUG
   Serial.begin(9600);
-
+#endif
  /*
  * Obsluga wyswietlacza
  */
@@ -37,15 +40,6 @@ void setup(void)
  */
   pinMode(CZUJNIK_OBROTOW_ROZRZUTNIKA, INPUT_PULLUP);
   attachInterrupt(digitalPinToInterrupt(CZUJNIK_OBROTOW_ROZRZUTNIKA), isr_zliczanie_impulsow_czujnik_rozrzutnika, FALLING);
-
-/*
- * Obsluga one wire - pomiar temperatury
- */
-  czujnik_temperatury.begin();
-  for(int index = 0 ; index < LICZBA_CZUJNIKOW_TEMPERATURY ; ++index)
-  {
-    czujnik_temperatury.setResolution(ds1820_adresy[index], 9);
-  }
 
 /*
  * Eliminuje dzwiek przy uruchamianiu
@@ -69,8 +63,17 @@ void setup(void)
 /*
  * Obsługa pamiecie EEPROM
  */
-  //zapisz_konfiguracje(class_ustawienia); // uzywamy tylko przy pierwszyl ladowaniu na plytke
+ /* zapisz_konfiguracje(class_ustawienia); */ // uzywamy tylko przy pierwszyl ladowaniu na plytke
   odczytaj_konfiguracje(class_ustawienia);
+
+/*
+ * Obsluga one wire - pomiar temperatury
+ */
+  czujnik_temperatury.begin();
+  for(int index = 0 ; index < LICZBA_CZUJNIKOW_TEMPERATURY ; ++index)
+  {
+    czujnik_temperatury.setResolution(class_ustawienia.ds1820_adresy[index], 9);
+  }
 }
 
 void loop(void)

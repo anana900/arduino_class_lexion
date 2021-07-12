@@ -24,16 +24,20 @@ void pokretlo()
     pokretlo_zmiana = true;
     licznik_pokretla++;
     pokretlo_fix_counter = 0;
+#ifdef DEBUG
     Serial.print("Licznik pokretla: ");
     Serial.println(licznik_pokretla);
+#endif
   }
   else if (pokretlo_fix_counter == -2)
   {
     pokretlo_zmiana = true;
     licznik_pokretla--;
     pokretlo_fix_counter = 0;
+#ifdef DEBUG
     Serial.print("Licznik pokretla: ");
     Serial.println(licznik_pokretla);
+#endif
   }
 
   lewy_ostatni_stan = lewy_stan;
@@ -65,7 +69,9 @@ void przycisk()
   {
     if (p_enter_przycisniety_krotko == true && p_enter_przycisniety_dlugo == false)
     {
+#ifdef DEBUG
       Serial.println("Enter krotkie");
+#endif
       enter_krotki = true;
       p_enter_przycisniety_krotko = false;
     }
@@ -76,7 +82,9 @@ void przycisk()
 
     if (p_enter_przycisniety_dlugo == true)
     {
+#ifdef DEBUG
       Serial.println("Enter dlugie");
+#endif
       enter_dlugi = true;
       p_enter_przycisniety_dlugo = false;
       p_enter_przycisniety_krotko = false;
@@ -144,7 +152,9 @@ void Przycisk::przycisk()
   {
     if (p_enter_przycisniety_krotko == true && p_enter_przycisniety_dlugo == false)
     {
+#ifdef DEBUG
       Serial.println("Enter krotkie");
+#endif
       enter_krotki = true;
       p_enter_przycisniety_krotko = false;
     }
@@ -155,7 +165,9 @@ void Przycisk::przycisk()
 
     if (p_enter_przycisniety_dlugo == true)
     {
+#ifdef DEBUG
       Serial.println("Enter dlugie");
+#endif
       enter_dlugi = true;
       p_enter_przycisniety_dlugo = false;
       p_enter_przycisniety_krotko = false;
