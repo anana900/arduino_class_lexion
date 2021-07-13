@@ -202,39 +202,29 @@ void oprint_menu_opcje()
 void oprint_menu_ustawienia_ogolne()
 {
   u8g2.setFont(u8g2_font_open_iconic_embedded_2x_t);
-  if (class_ustawienia.global_czy_uzywac_alarmu)
-  {
-    // dzieki on
-    u8g2.drawGlyph(8, 25, 0x0041);
-  }
-  else
+  if (!class_ustawienia.global_czy_uzywac_alarmu)
   {
     // dzwieki off
     u8g2.drawGlyph(8, 25, 0x0041);
     u8g2.drawLine(4, 27, 26, 5);
     u8g2.drawLine(5, 27, 27, 5);
     u8g2.drawLine(6, 27, 28, 5);
-  }
 
-  //u8g2.setFont(u8g2_font_open_iconic_other_2x_t);
-  u8g2.setFont(u8g2_font_helvR10_tr);
-  if (class_ustawienia.global_alarm_aktywacja_zewnetrzna)
-  {
-    // ext on
-    u8g2.setCursor(36, 21);
-    u8g2.print("Ext");
-    //u8g2.drawGlyph(40, 25, 0x0042);
   }
-  else
+  // dzieki on
+  u8g2.drawGlyph(8, 25, 0x0041);
+
+  u8g2.setFont(u8g2_font_helvR10_tr);
+  if (!class_ustawienia.global_alarm_aktywacja_zewnetrzna)
   {
     // ext off
-    //u8g2.drawGlyph(40, 25, 0x0042);
-    u8g2.setCursor(36, 21);
-    u8g2.print("Ext");
     u8g2.drawLine(36, 27, 58, 5);
     u8g2.drawLine(37, 27, 59, 5);
     u8g2.drawLine(38, 27, 60, 5);
   }
+  // ext on
+  u8g2.setCursor(36, 21);
+  u8g2.print("Ext");
 
   u8g2.setFont(u8g2_font_open_iconic_embedded_2x_t);
   u8g2.drawGlyph(104, 25, 0x0044);
