@@ -5,14 +5,18 @@ void ds1820_wyswietl_adres(DeviceAddress ds_adres)
 { 
   for (uint8_t i = 0; i < 8; i++)
   {
-#ifdef DEBUG
     Serial.print("0x");
-    if (ds_adres[i] < 0x10) Serial.print("0");
+    if (ds_adres[i] < 0x10)
+    {
+      Serial.print("0");
+    }
     Serial.print(ds_adres[i], HEX);
-    if (i < 7) Serial.print(", ");
+    if (i < 7)
+    {
+      Serial.print(", ");
+    }
   }
   Serial.println("");
-#endif
 }
 
 void czytaj_temperature()
@@ -31,7 +35,9 @@ void czytaj_temperature()
  
     for (int adres_index = 0 ; adres_index < LICZBA_CZUJNIKOW_TEMPERATURY ; ++adres_index )
     {
+#ifdef DEBUG
       ds1820_wyswietl_adres(class_ustawienia.ds1820_adresy[adres_index]);
+#endif
       float temp = czujnik_temperatury.getTempC(class_ustawienia.ds1820_adresy[adres_index]);
 
       if (temp > class_ustawienia.global_limit_temperatura_alarm)

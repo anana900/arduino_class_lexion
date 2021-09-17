@@ -7,9 +7,9 @@ uint8_t ol_3 = 0;
 unsigned long t_liczydlo = 0;
 void ustawienie_limitu_obrotow(bool kierunek)
 {
-  if(class_ustawienia.global_limit_obroty_alarm < 10000 && kierunek)
+  if(class_ustawienia.global_limit_obroty_alarm < 2400 && kierunek) // max 2400 rpm
   {
-    if(millis() - t_liczydlo < 150 && class_ustawienia.global_limit_obroty_alarm <= 9990)
+    if(millis() - t_liczydlo < 150 && class_ustawienia.global_limit_obroty_alarm <= 2390) //2400 - 10
     {
       class_ustawienia.global_limit_obroty_alarm += 10;
     }
@@ -35,9 +35,9 @@ void ustawienie_limitu_obrotow(bool kierunek)
 
 void ustawienie_limitu_temperatury(bool kierunek)
 {
-  if(class_ustawienia.global_limit_temperatura_alarm < 125 && kierunek)
+  if(class_ustawienia.global_limit_temperatura_alarm < 125 && kierunek) // max 125 C
   {
-    if(millis() - t_liczydlo < 150 && class_ustawienia.global_limit_temperatura_alarm <= 115)
+    if(millis() - t_liczydlo < 150 && class_ustawienia.global_limit_temperatura_alarm <= 115) // 125 - 10
     {
       class_ustawienia.global_limit_temperatura_alarm += 10;
     }
@@ -123,8 +123,8 @@ void oprint_temp_wybrana(int temp_index)
   u8g2.setCursor(35, 30);
   u8g2.print(temperatura[0][temp_index]);
 
-  u8g2.setFont(u8g2_font_helvR18_tr);
-  u8g2.drawStr(102,24,"'c");
+  u8g2.setFont(u8g2_font_helvR10_tr);
+  u8g2.drawStr(112,16,"C");
 }
 
 void oprint_temperatura()
@@ -240,6 +240,11 @@ void oprint_rozrzutnik_opcje(int limit)
 
   u8g2.setFont(u8g2_font_helvR18_tr);
   u8g2.setCursor(50, 25);
+  if (limit > 999)
+  {
+    u8g2.setFont(u8g2_font_helvR10_tr);
+    u8g2.setCursor(50, 23);
+  }
   u8g2.print(limit);
   
   u8g2.setFont(u8g2_font_open_iconic_embedded_2x_t);

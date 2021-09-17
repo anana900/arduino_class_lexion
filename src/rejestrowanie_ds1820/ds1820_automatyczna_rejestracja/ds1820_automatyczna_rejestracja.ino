@@ -61,6 +61,38 @@ void loop(void)
     
   }
   delay(2000);
+///////////////////////////////////
+
+
+
+
+  // Start up the library
+  sensors.begin();
+
+  // locate devices on the bus
+  Serial.println("Locating devices...");
+  Serial.print("Found ");
+  deviceCount = sensors.getDeviceCount();
+  Serial.print(deviceCount, DEC);
+  Serial.println(" devices.");
+  Serial.println("");
+
+  struct Dsdev{
+    String nazwa;
+    DeviceAddress devaddr;
+  } devtemp[10];
+
+  Serial.println("Printing addresses...");
+  for (int i = 0;  i < deviceCount;  i++)
+  {
+    Serial.print("Sensor ");
+    Serial.print(i);
+    Serial.print(" : ");
+    sensors.getAddress(devtemp[i].devaddr, i);
+    printAddress(devtemp[i].devaddr);
+  }
+
+  cpy_address(devtemp[0].devaddr, devtemp[1].devaddr);
 }
 
 void cpy_address(DeviceAddress a, DeviceAddress b)

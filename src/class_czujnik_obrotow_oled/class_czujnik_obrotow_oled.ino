@@ -34,6 +34,7 @@ void setup(void)
  * Obsluga wyswietlacza
  */
   u8g2.begin();
+  u8g2.enableUTF8Print();
 
 /*
  * Pomiar RPM (liczby obrotow na minut) z wykozystaniem przerwan
@@ -63,7 +64,7 @@ void setup(void)
 /*
  * Obsługa pamiecie EEPROM
  */
- /* zapisz_konfiguracje(class_ustawienia); */ // uzywamy tylko przy pierwszyl ladowaniu na plytke
+  //zapisz_konfiguracje(class_ustawienia); // uzywamy tylko przy pierwszyl ladowaniu na plytke i zmianie czyjnikow temperatury
   odczytaj_konfiguracje(class_ustawienia);
 
 /*

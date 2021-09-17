@@ -8,8 +8,8 @@ uint8_t P_PRAWY = 12;
 uint8_t P_ENTER = 13;
 
 // ALARM
-uint8_t ALARM = A0;
-uint8_t ALARM_AKTYWACJA_ZEWNETRZNA = A1;
+uint8_t ALARM = A1;
+uint8_t ALARM_AKTYWACJA_ZEWNETRZNA = A0;
 
 // OLED REZERWACJA I2C
 // A4
@@ -18,7 +18,7 @@ uint8_t ALARM_AKTYWACJA_ZEWNETRZNA = A1;
 // TEMPERATURA
 uint8_t ONE_WIRE_CZUJNIK_TEMPERATURA = 4;
 
-// ---------------------------------ZMIENNE------------------------------------
+// ---------------------------------ZMIENNE------------------------------------z
 int licznik_pokretla = 0;
 bool pokretlo_zmiana = false;
 
@@ -49,9 +49,9 @@ struct Ustawienia
   int global_limit_temperatura_alarm = 90;
   bool global_czy_uzywac_alarmu = false;
   bool global_alarm_aktywacja_zewnetrzna = true;
-  DeviceAddress ds1820_adresy[LICZBA_CZUJNIKOW_TEMPERATURY] = {{ 0x28, 0xF0, 0x3E, 0x45, 0x92, 0x12, 0x02, 0x8D },
-                                                               { 0x28, 0xE4, 0xD2, 0x45, 0x92, 0x11, 0x02, 0xA4 },
-                                                               { 0x28, 0x3E, 0xBC, 0x45, 0x92, 0x19, 0x02, 0x6A },
-                                                               { 0x28, 0xFF, 0x1C, 0x91, 0xC2, 0x15, 0x01, 0x2A }};
+  DeviceAddress ds1820_adresy[LICZBA_CZUJNIKOW_TEMPERATURY] = {{ 0x28, 0x0D, 0x46, 0x76, 0xE0, 0x01, 0x3C, 0x9E },
+                                                               { 0x28, 0xD7, 0x9D, 0x76, 0xE0, 0x01, 0x3C, 0xBB },
+                                                               { 0x28, 0x10, 0x3B, 0x76, 0xE0, 0x01, 0x3C, 0x0E },
+                                                               { 0x28, 0xA5, 0xE3, 0x76, 0xE0, 0x01, 0x3C, 0x82 }};
   String temp_nazwy_czujnikow[LICZBA_CZUJNIKOW_TEMPERATURY] = {"a","b","c","d"};
 } class_ustawienia;
